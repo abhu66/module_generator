@@ -127,6 +127,13 @@ module_generator test TEST /test
 ```
 
 ---
+## Support the Project
+
+If you find this plugin helpful, consider supporting its development:
+
+- [![Buy Me a Coffee](https://img.shields.io/badge/☕-Buy%20me%20a%20coffee-yellow?logo=buy-me-a-coffee&style=flat-square)](https://buymeacoffee.com/abukhoerula)
+
+Your support is greatly appreciated!
 
 ## 📄 License
 
