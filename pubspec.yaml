@@ -1,6 +1,6 @@
 name: module_generator
 description: CLI untuk generate module GetX (controller, page, binding, routes, pages).
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/abhu66/module_generator
 homepage: https://pub.dev/packages/module_generator
 
@@ -13,3 +13,5 @@ executables:
 
 dependencies:
   path: ^1.9.0
+  args: ^2.7.0
+  yaml: ^3.1.3

@@ -7,7 +7,13 @@ import 'dart:io';
 /// [moduleName] = nama folder module (ex: "home")
 /// [routeName]  = nama konstanta route (ex: "HOME")
 /// [routePath]  = path route (ex: "/home")
-void generateModule(String moduleName, String routeName, String routePath) {
+/// [packageName] = nama package user (ex: "my_app")
+void generateModule(
+    String moduleName,
+    String routeName,
+    String routePath,
+    String packageName,
+    ) {
   final capModuleName =
       moduleName[0].toUpperCase() + moduleName.substring(1);
 
@@ -16,7 +22,7 @@ void generateModule(String moduleName, String routeName, String routePath) {
 
   // === Controller ===
   File("${folder.path}/${moduleName}_controller.dart").writeAsStringSync('''
-import 'package:android/import_all.dart';
+import 'package:$packageName/import_all.dart';
 
 class ${capModuleName}Controller extends GetxController {
   // TODO: Implement ${capModuleName}Controller
@@ -25,7 +31,7 @@ class ${capModuleName}Controller extends GetxController {
 
   // === Page ===
   File("${folder.path}/${moduleName}_page.dart").writeAsStringSync('''
-import 'package:android/import_all.dart';
+import 'package:$packageName/import_all.dart';
 
 class ${capModuleName}Page extends GetView<${capModuleName}Controller> {
   const ${capModuleName}Page({super.key});
@@ -42,7 +48,7 @@ class ${capModuleName}Page extends GetView<${capModuleName}Controller> {
 
   // === Binding ===
   File("${folder.path}/${moduleName}_binding.dart").writeAsStringSync('''
-import 'package:android/import_all.dart';
+import 'package:$packageName/import_all.dart';
 
 class ${capModuleName}Binding extends Bindings {
   @override
@@ -65,7 +71,7 @@ export '${moduleName}_page.dart';
   final importFile = File("lib/import_all.dart");
   if (importFile.existsSync()) {
     final importContent = importFile.readAsStringSync();
-    final exportLine = "export 'modules/$moduleName/$moduleName.dart';"; // ⬅️ perbaikan
+    final exportLine = "export 'modules/$moduleName/$moduleName.dart';";
 
     if (!importContent.contains(exportLine)) {
       importFile.writeAsStringSync("$importContent\n$exportLine\n");

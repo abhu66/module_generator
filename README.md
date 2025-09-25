@@ -10,9 +10,9 @@ With just one command, you get a clean folder structure and boilerplate code ✅
 ## ✨ Features
 - Generate a complete **GetX module** (Controller, Page, Binding, Index).
 - Automatically updates:
-    - `import_all.dart`
-    - `getx/routes.dart`
-    - `getx/pages.dart`
+  - `import_all.dart`
+  - `getx/routes.dart`
+  - `getx/pages.dart`
 - Keeps your project structure clean and consistent.
 - Usable directly from the terminal.
 
@@ -50,14 +50,53 @@ module_generator --help
 
 ## 🚀 Usage
 
-### Generate a new module
+### Show help
 ```bash
-module_generator <moduleName> <ROUTE_NAME> </routePath>
+module_generator --help
 ```
 
-Example:
+Output:
+```
+Usage:
+  module_generator -m <module> -r <ROUTE> -p </path> [--package-name my_app]
+
+Options:
+  -m, --module         Module name (ex: home)
+  -r, --route          Route name (ex: HOME)
+  -p, --path           Route path (ex: /home)
+  -n, --package-name   Your project package name. If not provided, it will be read from pubspec.yaml
+  -h, --help           Show usage information
+```
+
+---
+
+### Auto detect package name (default)
+Use your `pubspec.yaml` name as package automatically:
+
 ```bash
-module_generator home HOME /home
+module_generator -m home -r HOME -p /home
+```
+
+---
+
+### Override package name (optional)
+If you want to specify the package name manually:
+
+```bash
+module_generator -m home -r HOME -p /home --package-name=my_custom_app
+```
+
+This will generate files with imports like:
+
+```dart
+import 'package:my_custom_app/import_all.dart';
+```
+
+---
+
+### Example
+```bash
+module_generator -m home -r HOME -p /home
 ```
 
 This will create:
@@ -72,9 +111,9 @@ lib/
 ```
 
 Additionally:
-- `lib/import_all.dart` → automatically updated with module export
-- `lib/getx/routes.dart` → automatically updated with the new route
-- `lib/getx/pages.dart` → automatically updated with a new `GetPage` entry
+- `lib/import_all.dart` → updated with module export
+- `lib/getx/routes.dart` → updated with the new route
+- `lib/getx/pages.dart` → updated with a new `GetPage` entry
 
 ---
 
@@ -82,7 +121,7 @@ Additionally:
 
 **home_controller.dart**
 ```dart
-import 'package:android/import_all.dart';
+import 'package:<your_package>/import_all.dart';
 
 class HomeController extends GetxController {
   // TODO: Implement HomeController
@@ -91,7 +130,7 @@ class HomeController extends GetxController {
 
 **home_page.dart**
 ```dart
-import 'package:android/import_all.dart';
+import 'package:<your_package>/import_all.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
@@ -123,17 +162,20 @@ dart pub global activate --source path .
 
 Test:
 ```bash
-module_generator test TEST /test
+module_generator -m test -r TEST -p /test
 ```
 
 ---
-## Support the Project
+
+## 💖 Support the Project
 
 If you find this plugin helpful, consider supporting its development:
 
 - [![Buy Me a Coffee](https://img.shields.io/badge/☕-Buy%20me%20a%20coffee-yellow?logo=buy-me-a-coffee&style=flat-square)](https://buymeacoffee.com/abukhoerula)
 
 Your support is greatly appreciated!
+
+---
 
 ## 📄 License
 
